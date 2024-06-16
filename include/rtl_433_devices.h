@@ -8,6 +8,7 @@
 #include "r_device.h"
 
 #define DEVICES \
+	DECL(brandless_kinetic_switch) \
     DECL(silvercrest) \
     DECL(rubicson) \
     DECL(prologue) \
