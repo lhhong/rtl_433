@@ -45,6 +45,7 @@ add_library(r_433 STATIC
     write_sigrok.c
     devices/flex.c
     devices/random_switch.c
+    devices/random_remote.c
 )
 
 if("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_C_COMPILER_ID}" MATCHES "Clang")

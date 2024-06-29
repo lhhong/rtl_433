@@ -9,6 +9,7 @@
 
 #define DEVICES \
 	DECL(brandless_kinetic_switch) \
+	DECL(brandless_remote) \
 
     /* Add new decoders here. */
 
