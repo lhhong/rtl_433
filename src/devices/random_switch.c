@@ -1,14 +1,19 @@
 #include "decoder.h"
 
 static int brandless_switch_callback(r_device *decoder, bitbuffer_t *bitbuffer) {
-	if (bitbuffer->num_rows < 3) {
+	if (bitbuffer->num_rows < 2) {
 		return DECODE_ABORT_LENGTH;
 	}
-	int row = bitbuffer_find_repeated_row(bitbuffer, 3, 24);
-	if (row < 0) {
-		return DECODE_ABORT_EARLY;
-	}
-    uint8_t data[3]={0};
+  int row = 0;
+  for (; row < bitbuffer->num_rows; row++) {
+    if (bitbuffer->bits_per_row[row] >= 24) {
+      break;
+    }
+    if (row == bitbuffer->num_rows - 1) {
+      return DECODE_ABORT_EARLY;
+    }
+  }
+  uint8_t data[3]={0};
 	bitbuffer_extract_bytes(bitbuffer, row, 0, data, 24);
 	char hexstr[7] = {0};
 
